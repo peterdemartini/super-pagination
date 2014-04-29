@@ -1,0 +1,29 @@
+{
+  "name": "super-pagination",
+  "version": "0.0.1",
+  "description": "Super Pagination for Node.js, Mongoose and Twitter Bootstrap.",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/peterdemartini/super-pagination.git"
+  },
+  "keywords": [
+    "Pagination",
+    "Mongoose",
+    "Bootstrap"
+  ],
+  "author": "Peter DeMartini",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/peterdemartini/super-pagination/issues"
+  },
+  "homepage": "https://github.com/peterdemartini/super-pagination",
+  "dependencies": {
+    "pagination": "~0.4.1",
+    "mongoose": "~3.8.8",
+    "lodash": "~2.4.1"
+  }
+}
