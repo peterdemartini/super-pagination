@@ -76,7 +76,8 @@ Set the configuration for the pagination
             next_text : '&raquo;',
             prev_text : '&laquo;',
             size : null,
-            number_pages : 5
+            number_pages : 5,
+            show_empty : true
         }
 
 
