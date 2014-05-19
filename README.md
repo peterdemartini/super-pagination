@@ -1,7 +1,7 @@
 Super Pagination
 ================
 
-Super Pagination for Node.js, Mongoose and Twitter Bootstrap.
+Super Pagination for Node.js, Mongoose and Twitter Bootstrap. There two objects built into this module, one for paginating mongoose and one for creating pagination. When using the mongoose paginate function you are returned with results and the pagination object.
 
 ### Installation
 
@@ -11,27 +11,42 @@ Super Pagination for Node.js, Mongoose and Twitter Bootstrap.
 
 #### Mongoose
 
+#### paginate( ) `[type = 'function']`
+
 Extend the mongoose model to run a pagination query.
 
-- @params : #Object
-        defaults: {
-            per_page : 10,
-            page : 1,
-            url : '/',
-            query : {},
-            select : null,
-            populate : null,
-            sort : null
-        }
-- @callback : #Function
-        function(err, results, pagination){
-            ...
-        }
+**@params** :
 
-    mongoose.paginate([params], [callback]);
+type: `Object`
 
+````
+defaults: {
+    per_page : 10,
+    page : 1,
+    url : '/',
+    query : {},
+    select : null,
+    populate : null,
+    sort : null
+}
+````
+
+**@callback** :
+
+    type: `Function`
+
+````
+function(err, results, pagination){
+    ...
+}
+````
+
+````
+mongoose.paginate([params], [callback]);
+````
 
 ##### Usage
+
 
     var mongoose = require('super-pagination').mongoose,
         Model = mongoose.model('Model');
@@ -55,36 +70,46 @@ Extend the mongoose model to run a pagination query.
         });
     });
 
+
 #### Paginator
 
-#### set( );
+#### set( ) `[type = 'function']`
 
 Set the configuration for the pagination
 
-- @params : #Object
-        defaults: {
-            total : 1000,
-            per_page : 10,
-            current_page : 2,
-            url : '/',
-            params : {
+**@params**:
 
-            },
-            page_param : 'page',
-            show_next : true,
-            show_prev : true,
-            next_text : '&raquo;',
-            prev_text : '&laquo;',
-            size : null,
-            number_of_pages : 1,
-            number_of_links : 5,
-            show_empty : true
-        }
+type: `Object`
 
+````
+defaults: {
+    total : 1000,
+    per_page : 10,
+    current_page : 2,
+    url : '/',
+    params : {
 
-    paginator.set([params]);
+    },
+    page_param : 'page',
+    show_next : true,
+    show_prev : true,
+    next_text : '&raquo;',
+    prev_text : '&laquo;',
+    size : null,
+    number_of_pages : 1,
+    number_of_links : 5,
+    show_empty : true
+}
+````
+
+````
+paginator.set([params]);
+````
 
 ##### Usage
+
+    var paginator = require('super-pagination').paginator;
+
     var pagination = new paginator().set({
         per_page : 10,
         current_page : 1,
@@ -93,7 +118,7 @@ Set the configuration for the pagination
         url : '/'
     });
 
-### render( );
+### render( ) `[type = 'function']`
 Returns HTML in bootstrap format
 
     paginator.render();
@@ -101,7 +126,7 @@ Returns HTML in bootstrap format
 ##### Usage
     var html = pagination.render();
 
-### json( );
+### json( ) `[type = 'function']`
 
 Returns JSON for building custom pagination.
 
