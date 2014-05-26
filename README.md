@@ -1,8 +1,6 @@
 Super Pagination
 ================
 
-[![Build Status](https://img.shields.io/travis/peterdemartini/super-pagination/master.svg)](https://travis-ci.org/peterdemartini/super-pagination)
-[![Coverage Status](http://img.shields.io/coveralls/peterdemartini/super-pagination.svg)](https://coveralls.io/r/peterdemartini/super-pagination?branch=master)
 [![Dependency Status](https://david-dm.org/peterdemartini/super-pagination.svg?theme=shields.io)](https://david-dm.org/peterdemartini/super-pagination)
 [![devDependency Status](https://david-dm.org/peterdemartini/super-pagination/dev-status.svg?theme=shields.io)](https://david-dm.org/peterdemartini/super-pagination#info=devDependencies)
 
