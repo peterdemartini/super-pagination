@@ -1,6 +1,11 @@
 Super Pagination
 ================
 
+[![Build Status](https://img.shields.io/travis/peterdemartini/super-pagination/master.svg)](https://travis-ci.org/peterdemartini/super-pagination)
+[![Coverage Status](http://img.shields.io/coveralls/peterdemartini/super-pagination.svg)](https://coveralls.io/r/peterdemartini/super-pagination?branch=master)
+[![Dependency Status](https://david-dm.org/peterdemartini/super-pagination.svg?theme=shields.io)](https://david-dm.org/peterdemartini/super-pagination)
+[![devDependency Status](https://david-dm.org/peterdemartini/super-pagination/dev-status.svg?theme=shields.io)](https://david-dm.org/peterdemartini/super-pagination#info=devDependencies)
+
 Super Pagination for Node.js, Mongoose and Twitter Bootstrap. There two objects built into this module, one for paginating mongoose and one for creating pagination. When using the mongoose paginate function you are returned with results and the pagination object.
 
 ### Installation
