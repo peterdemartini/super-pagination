@@ -6,17 +6,19 @@ Super Pagination
 
 Super Pagination for Node.js, Mongoose and Twitter Bootstrap. There two objects built into this module, one for paginating mongoose and one for creating pagination. When using the mongoose paginate function you are returned with results and the pagination object.
 
-### Installation
+**UPDATE:** The mongoose object is now following the current mongoose plugin schema.
+
+## Installation
 
     npm install super-pagination
 
-### API
+## API
 
-#### Mongoose
+## Mongoose
 
-#### paginate( ) `[type = 'function']`
+### paginate( ) `[type = 'function']`
 
-Extend the mongoose model to run a pagination query.
+A mongoose plugin to run a pagination query.
 
 **@params** :
 
@@ -48,17 +50,30 @@ function(err, results, pagination){
 mongoose.paginate([params], [callback]);
 ````
 
-##### Usage
+### Usage
+
+Model:
 
 
-    var mongoose = require('super-pagination').mongoose,
-        Model = mongoose.model('Model');
+    // book.js
+    var superPagination = require('super-pagination').mongoose;
 
-    Model.paginate({
+    var Book = new Schema({ ... });
+
+    Book.plugin(superPagination, defaults);
+
+
+Controller:
+
+
+    var mongoose = require('mongoose'),
+        Book = mongoose.model('Book');
+
+    Book.paginate({
         query : {
         },
         page : req.query.page || 1,
-        select : 'name summary created',
+        select : 'title summary created',
         populate : 'user',
         sort : {
             'created' : -1
@@ -67,16 +82,32 @@ mongoose.paginate([params], [callback]);
     }, function(err, results, pagination){
         if (err) return console.log('Error', err);
 
-        res.render(config.public_theme + '/list', {
+        res.render('index', {
             results : results,
-            links : pagination.render()
+            pagination : pagination.render()
         });
     });
 
+View:
 
-#### Paginator
+    <html>
+        <head>
+            <title>Superpagination</title>
+            <!-- Include Bootstrap files -->
+        </head>
+        <body>
+            <h1>Results</h1>
+            <div id="results" class="row">
+                ...
+            </div>
+            {{ pagination }}
+        </body>
+    </html>
 
-#### set( ) `[type = 'function']`
+
+## Paginator
+
+### set( ) `[type = 'function']`
 
 Set the configuration for the pagination
 
@@ -109,7 +140,7 @@ defaults: {
 paginator.set([params]);
 ````
 
-##### Usage
+### Usage
 
     var paginator = require('super-pagination').paginator;
 
@@ -126,7 +157,7 @@ Returns HTML in bootstrap format
 
     paginator.render();
 
-##### Usage
+### Usage
     var html = pagination.render();
 
 ### json( ) `[type = 'function']`
@@ -135,5 +166,5 @@ Returns JSON for building custom pagination.
 
     paginator.json();
 
-##### Usage
+### Usage
     var json = pagination.json();  
