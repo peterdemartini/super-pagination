@@ -56,12 +56,15 @@ Model:
 
 
     // book.js
-    var superPagination = require('super-pagination').mongoose;
+    var mongoose = require('mongoose'),
+        Schema = mongoose.Schema,
+        superPagination = require('super-pagination').mongoose;
 
-    var Book = new Schema({ ... });
+    var BookSchema = new Schema({ ... });
 
-    Book.plugin(superPagination, defaults);
+    BookSchema.plugin(superPagination, defaults);
 
+    mongoose.model('Book', BookSchema);
 
 Controller:
 
@@ -78,6 +81,7 @@ Controller:
         sort : {
             'created' : -1
         },
+        per_page : 5,
         url : '/'
     }, function(err, results, pagination){
         if (err) return console.log('Error', err);
@@ -92,7 +96,7 @@ View:
 
     <html>
         <head>
-            <title>Superpagination</title>
+            <title>Super Pagination</title>
             <!-- Include Bootstrap files -->
         </head>
         <body>
