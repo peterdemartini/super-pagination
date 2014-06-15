@@ -31,7 +31,9 @@ describe('Book', function () {
                     }
                 });
 
-                BookSchema.plugin(superPagination);
+                BookSchema.plugin(superPagination, {
+                    theme : 'bootstrap'
+                });
 
                 mongoose.model('Book', BookSchema);
 
@@ -111,7 +113,7 @@ describe('Book', function () {
         it('should return results and pagination', function (done) {
             Book.paginate({
                 query: {
-                    name: 'Hello'
+                    title: title
                 },
                 page: 1,
                 select: 'title',
@@ -123,9 +125,13 @@ describe('Book', function () {
                 url: '/'
             }, function (err, results, pagination) {
                 if (err) throw err;
+
                 var json = pagination.json();
                 if (!json) {
                     throw Error('No pagination');
+                }
+                if (json.total !== 20) {
+                    throw Error('Incorrect pagination results');
                 }
                 done();
             });
