@@ -38,7 +38,7 @@ defaults: {
 
 **@callback** :
 
-    type: `Function`
+type: `Function`
 
 ````
 function(err, results, pagination){
