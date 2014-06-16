@@ -137,6 +137,35 @@ describe('Book', function () {
             });
         });
 
+        it('should return results and custom pagination', function (done) {
+            Book.paginate({
+                query: {
+                    title: title
+                },
+                page: 1,
+                select: 'title',
+                populate: 'type',
+                sort: {
+                    'created': -1
+                },
+                per_page: 5,
+                url: '/',
+                theme : 'custom',
+                custom_template : '<div>{{ data.next_url }}</div>'
+            }, function (err, results, pagination) {
+                if (err) throw err;
+
+                var json = pagination.json();
+                if (!json) {
+                    throw Error('No pagination');
+                }
+                if (json.total !== 20) {
+                    throw Error('Incorrect pagination results');
+                }
+                done();
+            });
+        });
+
         it('should return no results and pagination', function (done) {
             Book.paginate({
                 query: {
@@ -148,9 +177,12 @@ describe('Book', function () {
                     throw Error('Should return no results');
                 }
 
-                var json = pagination.json();
-                if (!json) {
+                if (!pagination) {
                     throw Error('No pagination');
+                }
+                var html = pagination.render();
+                if(html !== '<div></div>'){
+                    throw Error('Should return empty string');
                 }
 
                 done();

@@ -6,6 +6,6 @@
         <a href="{{ page.url }}" title="Go to Page ({{ page.number }})" class="page {% if page.class %}{{ page.class }}{% endif %}">{{ page.number }}</a>
     {% endfor %}
     {% if data.show_next %}
-        <a href="{{ data.next_url }}" title="Next Page" class="prev-page">{{ data.next_text }}</a>
+        <a href="{{ data.next_url }}" title="Next Page" class="next-page">{{ data.next_text }}</a>
     {% endif %}
 </div>

@@ -16,6 +16,12 @@ Super Pagination is an all-in-one solution for Node.js, Mongoose and Twitter Boo
 
 ## Mongoose
 
+Add the Super Pagination Mongoose Plugin to your Model. The second parameter allows you set any of the configuration for your pagination - which can be overwritten when you call paginate().
+
+    var superPagination = require('super-pagination').mongoose;
+
+    MongooseSchema.plugin(superPagination, defaults);
+
 ### paginate( ) `[type = 'function']`
 
 A mongoose plugin to run a pagination query.
@@ -33,6 +39,7 @@ defaults: {
     select : null,
     populate : null,
     sort : null,
+    custom_template : null,
     theme : 'bootstrap'
 }
 ````
@@ -140,7 +147,8 @@ defaults: {
     number_of_pages : 1,
     number_of_links : 5,
     show_empty : true,
-    theme : 'bootstrap' // ['bootstrap', 'html']
+    custom_template : null,
+    theme : 'bootstrap' // ['bootstrap', 'html', 'custom']
 }
 ````
 
@@ -149,6 +157,8 @@ paginator.set([params]);
 ````
 
 ### Usage
+
+Bootstrap / HTML:
 
     var paginator = require('super-pagination').paginator;
 
@@ -159,6 +169,30 @@ paginator.set([params]);
         number_of_pages : ,
         url : '/',
         theme : 'bootstrap'
+    });
+
+Custom Template:
+
+    var paginator = require('super-pagination').paginator;
+
+    var pagination = new paginator().set({
+        per_page : 10,
+        current_page : 1,
+        total : 1000,
+        number_of_pages : ,
+        url : '/',
+        theme : 'custom',
+        custom_template : '<div class="pagination {% if data.size %}pagination-{{ data.size }}{% endif %}">
+            {% if data.show_next %}
+                <a href="{{ data.prev_url }}" title="Previous Page" class="prev-page">{{ data.prev_text }}</a>
+            {% endif %}
+            {% for page in data.pages %}
+                <a href="{{ page.url }}" title="Go to Page ({{ page.number }})" class="page {% if page.class %}{{ page.class }}{% endif %}">{{ page.number }}</a>
+            {% endfor %}
+            {% if data.show_next %}
+                <a href="{{ data.next_url }}" title="Next Page" class="prev-page">{{ data.next_text }}</a>
+            {% endif %}
+        </div>',
     });
 
 ### render( ) `[type = 'function']`
@@ -177,7 +211,6 @@ Bootstrap:
             <a href="/?page=1" title="Previous Page">&amp;laquo;</a>
         </li>
 
-
         <li>
             <a href="/?page=1" title="Go to Page (1)" class="active">1</a>
         </li>
@@ -194,7 +227,6 @@ Bootstrap:
             <a href="/?page=4" title="Go to Page (4)" class="">4</a>
         </li>
 
-
         <li>
             <a href="/?page=2" title="Next Page">&amp;raquo;</a>
         </li>
@@ -207,7 +239,6 @@ HTML:
 
             <a href="/?page=1" title="Previous Page" class="prev-page">&amp;laquo;</a>
 
-
             <a href="/?page=1" title="Go to Page (1)" class="page active">1</a>
 
             <a href="/?page=2" title="Go to Page (2)" class="page ">2</a>
@@ -215,7 +246,6 @@ HTML:
             <a href="/?page=3" title="Go to Page (3)" class="page ">3</a>
 
             <a href="/?page=4" title="Go to Page (4)" class="page ">4</a>
-
 
             <a href="/?page=2" title="Next Page" class="prev-page">&amp;raquo;</a>
 
@@ -246,6 +276,7 @@ Returns JSON for building custom pagination.
           number_of_links: 5,
           show_empty: true,
           theme: 'bootstrap',
+          custom_template : null,
           pages:
            [ { url: '/?page=1', number: 1, class: 'active' },
              { url: '/?page=2', number: 2, class: '' },
