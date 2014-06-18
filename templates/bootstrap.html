@@ -1,7 +1,7 @@
 <ul class="pagination {% if data.size %}pagination-{{ data.size }}{% endif %}">
     {% if data.show_next %}
     <li>
-        <a href="{{ data.prev_url }}" title="Previous Page">{{ data.prev_text }}</a>
+        <a href="{{ data.prev_url }}" title="Previous Page">{{ data.prev_text|safe }}</a>
     </li>
     {% endif %}
     {% for page in data.pages %}
@@ -11,7 +11,7 @@
     {% endfor %}
     {% if data.show_next %}
     <li>
-        <a href="{{ data.next_url }}" title="Next Page">{{ data.next_text }}</a>
+        <a href="{{ data.next_url }}" title="Next Page">{{ data.next_text|safe }}</a>
     </li>
     {% endif %}
 </ul>
