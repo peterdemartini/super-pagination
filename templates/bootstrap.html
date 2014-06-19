@@ -5,8 +5,8 @@
     </li>
     {% endif %}
     {% for page in data.pages %}
-    <li>
-        <a href="{{ page.url }}" title="Go to Page ({{ page.number }})" class="{% if page.class %}{{ page.class }}{% endif %}">{{ page.number }}</a>
+    <li class="{% if page.class %}{{ page.class }}{% endif %}">
+        <a href="{{ page.url }}" title="Go to Page ({{ page.number }})">{{ page.number }}</a>
     </li>
     {% endfor %}
     {% if data.show_next %}
