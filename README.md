@@ -1,6 +1,7 @@
 Super Pagination
 ================
 
+[![Build Status](https://travis-ci.org/peterdemartini/super-pagination.svg?branch=master)](https://travis-ci.org/peterdemartini/super-pagination)
 [![Dependency Status](https://david-dm.org/peterdemartini/super-pagination.svg?theme=shields.io)](https://david-dm.org/peterdemartini/super-pagination)
 [![devDependency Status](https://david-dm.org/peterdemartini/super-pagination/dev-status.svg?theme=shields.io)](https://david-dm.org/peterdemartini/super-pagination#info=devDependencies)
 
