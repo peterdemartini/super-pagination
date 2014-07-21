@@ -1,6 +1,6 @@
 {
   "name": "super-pagination",
-  "version": "0.5.2",
+  "version": "0.5.3",
   "description": "Super Pagination for Node.js, Mongoose and Twitter Bootstrap.",
   "main": "index.js",
   "scripts": {
@@ -26,7 +26,7 @@
   "homepage": "https://github.com/peterdemartini/super-pagination",
   "dependencies": {
     "lodash": "~2.4.1",
-    "swig": "~1.3.2"
+    "swig": "~1.4.1"
   },
   "devDependencies": {
     "async": "~0.9.0",

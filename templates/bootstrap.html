@@ -1,5 +1,5 @@
 <ul class="pagination {% if data.size %}pagination-{{ data.size }}{% endif %}">
-    {% if data.show_next %}
+    {% if data.show_prev %}
     <li>
         <a href="{{ data.prev_url }}" title="Previous Page">{{ data.prev_text|safe }}</a>
     </li>

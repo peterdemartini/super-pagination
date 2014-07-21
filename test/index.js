@@ -5,7 +5,7 @@ var mongoose = require('mongoose'),
     Schema = mongoose.Schema,
     superPagination = require('../lib/mongoose');
 
-var title = 'Hello';
+var title = 'Hello', limit = 50;
 
 describe('Book', function () {
 
@@ -77,7 +77,7 @@ describe('Book', function () {
                         if (err) throw err;
                         async.whilst(
                             function () {
-                                return count < 20;
+                                return count < limit;
                             },
                             function (callback) {
                                 count++;
@@ -115,7 +115,7 @@ describe('Book', function () {
                 query: {
                     title: title
                 },
-                page: 1,
+                page: 10,
                 select: 'title',
                 populate: 'type',
                 sort: {
@@ -130,7 +130,7 @@ describe('Book', function () {
                 if (!json) {
                     throw Error('No pagination');
                 }
-                if (json.total !== 20) {
+                if (json.total !== limit) {
                     throw Error('Incorrect pagination results');
                 }
                 done();
@@ -159,7 +159,7 @@ describe('Book', function () {
                 if (!json) {
                     throw Error('No pagination');
                 }
-                if (json.total !== 20) {
+                if (json.total !== limit) {
                     throw Error('Incorrect pagination results');
                 }
                 done();
