@@ -134,7 +134,7 @@ type: `Object`
 defaults: {
     total : 1000,
     per_page : 10,
-    current_page : 2,
+    current_page : 1,
     url : '/',
     params : {
 

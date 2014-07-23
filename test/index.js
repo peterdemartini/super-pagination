@@ -110,7 +110,40 @@ describe('Book', function () {
 
     describe('#paginate()', function () {
 
-        it('should return results and pagination', function (done) {
+        it('should return results and pagination at start', function (done) {
+            Book.paginate({
+                query: {
+                    title: title
+                },
+                page: 1,
+                select: 'title',
+                populate: 'type',
+                sort: {
+                    'created': -1
+                },
+                per_page: 5,
+                url: '/'
+            }, function (err, results, pagination) {
+                if (err) throw err;
+
+                var json = pagination.json();
+                if (!json) {
+                    throw Error('No pagination');
+                }
+                if (json.total !== limit) {
+                    throw Error('Incorrect pagination results');
+                }
+                var pages = json.pages.length;
+                if (pages !== json.number_of_links) {
+                    throw Error('Incorrect number of links. Expecting ' +
+                        json.number_of_links + ', got ' +
+                        pages);
+                }
+                done();
+            });
+        });
+
+        it('should return results and pagination at end', function (done) {
             Book.paginate({
                 query: {
                     title: title
@@ -133,6 +166,45 @@ describe('Book', function () {
                 if (json.total !== limit) {
                     throw Error('Incorrect pagination results');
                 }
+                var pages = json.pages.length;
+                if (pages !== json.number_of_links) {
+                    throw Error('Incorrect number of links. Expecting ' +
+                        json.number_of_links + ', got ' +
+                        pages);
+                }
+                done();
+            });
+        });
+
+        it('should return results and pagination in middle', function (done) {
+            Book.paginate({
+                query: {
+                    title: title
+                },
+                page: 5,
+                select: 'title',
+                populate: 'type',
+                sort: {
+                    'created': -1
+                },
+                per_page: 5,
+                url: '/'
+            }, function (err, results, pagination) {
+                if (err) throw err;
+
+                var json = pagination.json();
+                if (!json) {
+                    throw Error('No pagination');
+                }
+                if (json.total !== limit) {
+                    throw Error('Incorrect pagination results');
+                }
+                var pages = json.pages.length;
+                if (pages !== json.number_of_links) {
+                    throw Error('Incorrect number of links. Expecting ' +
+                        json.number_of_links + ', got ' +
+                        pages);
+                }
                 done();
             });
         });
@@ -151,6 +223,7 @@ describe('Book', function () {
                 per_page: 5,
                 url: '/',
                 theme : 'custom',
+                number_of_links : 3,
                 custom_template : '<div>{{ data.next_url }}</div>'
             }, function (err, results, pagination) {
                 if (err) throw err;
@@ -161,6 +234,12 @@ describe('Book', function () {
                 }
                 if (json.total !== limit) {
                     throw Error('Incorrect pagination results');
+                }
+                var pages = json.pages.length;
+                if (pages !== json.number_of_links) {
+                    throw Error('Incorrect number of links. Expecting ' +
+                        json.number_of_links + ', got ' +
+                        pages);
                 }
                 done();
             });
