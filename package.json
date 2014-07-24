@@ -1,6 +1,6 @@
 {
   "name": "super-pagination",
-  "version": "0.5.8",
+  "version": "0.5.9",
   "description": "Super Pagination for Node.js, Mongoose and Twitter Bootstrap.",
   "main": "index.js",
   "scripts": {
