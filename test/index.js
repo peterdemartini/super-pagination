@@ -181,7 +181,7 @@ describe('Book', function () {
                 query: {
                     title: title
                 },
-                page: 5,
+                page: 7,
                 select: 'title',
                 populate: 'type',
                 sort: {
@@ -205,6 +205,7 @@ describe('Book', function () {
                         json.number_of_links + ', got ' +
                         pages);
                 }
+
                 done();
             });
         });
