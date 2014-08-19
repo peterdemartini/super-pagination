@@ -15,7 +15,7 @@ describe('Book', function () {
         async.waterfall([
 
             function (next) {
-                mongoose.connect(process.env.MONGO_DB || 'mongodb://localhost/test');
+                mongoose.connect(process.env.MONGO_DB || 'mongodb://localhost/pagination_test');
                 next();
             },
             function (next) {
